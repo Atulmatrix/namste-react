@@ -1,42 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// const heading=React.createElement("h1",
-// {id:"heading"},
-// "Hello World from React");
-// console.log(heading); //this will print a react element which is a normal javascript object.
-// const root= ReactDOM.createRoot(document.getElementById("root"));
-// root.render(heading);
-// ReactElement(JavaScript Object)=>HTML(Browser Understand)
+const heading=React.createElement("h1",{id:"heading"}, "namste JS");
+
+// React.createElement=> React Element -JS object => HTML Element after rendering
 
 
-{/* <div id="parent">
-<div id="child1">
-  <h1></h1>
-  <h2></h2>
-</div>
-<div id="child2">
-  <h1></h1>
-  <h2></h2>
-</div>
+console.log(heading); //object
 
 
-</div> */}
+// JSX(transpile into react code before it reaches to JS Engine)-Done by Parcel and Babel.
+// JSX=>React.createElement=> React Element -JS object => HTML Element after rendering
 
-
-
-
-
-
-const parent=React.createElement("div",
-{id:"parent"},
-[React.createElement("div",{id:"child1"},
-[React.createElement("h1",{},"I am an h1 tagggg"),React.createElement("h2",{},"I am an h2 tag"),]),
-React.createElement("div",{id:"child2"},
-[React.createElement("h1",{},"I am an h1 tag"),React.createElement("h2",{},"I am an h2 tag"),])]);
+const jsxheading=<h1 id="heading">Namste React using JSX</h1>
+console.log(jsxheading); //object=>React Object
 const root= ReactDOM.createRoot(document.getElementById("root"));
-
-console.log(parent); //object
-root.render(parent);
-
-// JSX
+root.render(jsxheading);
