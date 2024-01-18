@@ -40,7 +40,7 @@ const Header = () => {
 const StyleCard = { backgroundColor: "yellow" };
 
 const RestaurantCard = (props) => {
-  console.log(props);
+  const { resName, cuisine } = props;
   return (
     // <div className="cover" style={StyleCard}>
     <div className="cover" style={{ backgroundColor: "#f0f0f0" }}>
@@ -48,8 +48,8 @@ const RestaurantCard = (props) => {
         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/d3711387c3cb4ff9eaff53e1653cb46d"
         alt=""
       />
-      <h3>{props.resName}</h3>
-      <h4>{props.cuisine}</h4>
+      <h3>{resName}</h3>
+      <h4>{cuisine}</h4>
       <h4>4.8 Star</h4>
       <h4>38 minutes</h4>
     </div>
