@@ -39,7 +39,8 @@ const Header = () => {
 
 const StyleCard = { backgroundColor: "yellow" };
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+  console.log(props);
   return (
     // <div className="cover" style={StyleCard}>
     <div className="cover" style={{ backgroundColor: "#f0f0f0" }}>
@@ -47,8 +48,8 @@ const RestaurantCard = () => {
         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/d3711387c3cb4ff9eaff53e1653cb46d"
         alt=""
       />
-      <h3>Paneer Shop</h3>
-      <h4>Biryani, North India,Paneer</h4>
+      <h3>{props.resName}</h3>
+      <h4>{props.cuisine}</h4>
       <h4>4.8 Star</h4>
       <h4>38 minutes</h4>
     </div>
@@ -60,18 +61,8 @@ const Body = () => {
     <div className="body">
       <div className="SearchContainer">Search</div>
       <div className="res-Container">
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
+        <RestaurantCard resName="Mera Dhaba" cuisine="Mutton-Biryani" />
+        <RestaurantCard resName="Tera Dhaba" cuisine="Butter paneer masala" />
       </div>
     </div>
   );
