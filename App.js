@@ -40,7 +40,7 @@ const Header = () => {
 const StyleCard = { backgroundColor: "yellow" };
 
 const RestaurantCard = (props) => {
-  console.log(props);
+  // console.log(props);
   const { resName } = props;
   const { name, locality, areaName, avgRating, cuisines } = resName?.info;
   return (
@@ -727,13 +727,15 @@ const resList = [
   },
 ];
 
+// not using key is not acceptable<<<<<<<indexas a key(however , not recommnded)<<<<<<<<<<<<<< unique key is a best practise
+
 const Body = () => {
   return (
     <div className="body">
       <div className="SearchContainer">Search</div>
       <div className="res-Container">
-        {resList.map((res) => {
-          return <RestaurantCard key={res.info.id} resName={res} />;
+        {resList.map((res, index) => {
+          return <RestaurantCard key={index} resName={res} />;
         })}
       </div>
     </div>
