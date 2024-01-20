@@ -40,7 +40,9 @@ const Header = () => {
 const StyleCard = { backgroundColor: "yellow" };
 
 const RestaurantCard = (props) => {
+  console.log(props);
   const { resName } = props;
+  const { name, locality, areaName, avgRating, cuisines } = resName?.info;
   return (
     // <div className="cover" style={StyleCard}>
     <div className="cover" style={{ backgroundColor: "#f0f0f0" }}>
@@ -51,11 +53,11 @@ const RestaurantCard = (props) => {
         }
         alt=""
       />
-      <h3>{resName.info.name}</h3>
-      <h4>{resName.info.locality}</h4>
-      <h4>{resName.info.areaName}</h4>
-      <h4>{resName.info.avgRating}</h4>
-      <h4>{resName.info.costForTwo}</h4>
+      <h3>{name}</h3>
+      <h4>{locality}</h4>
+      <h4>{areaName}</h4>
+      <h4>{avgRating}</h4>
+      <h4>{cuisines}</h4>
     </div>
   );
 };
@@ -730,15 +732,9 @@ const Body = () => {
     <div className="body">
       <div className="SearchContainer">Search</div>
       <div className="res-Container">
-        <RestaurantCard resName={resList[0]} />
-        <RestaurantCard resName={resList[1]} />
-        <RestaurantCard resName={resList[2]} />
-        <RestaurantCard resName={resList[3]} />
-        <RestaurantCard resName={resList[4]} />
-        <RestaurantCard resName={resList[5]} />
-        <RestaurantCard resName={resList[6]} />
-        <RestaurantCard resName={resList[7]} />
-        <RestaurantCard resName={resList[8]} />
+        {resList.map((res) => {
+          return <RestaurantCard key={res.info.id} resName={res} />;
+        })}
       </div>
     </div>
   );
