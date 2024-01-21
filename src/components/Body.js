@@ -1,66 +1,4 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom/client";
-
-// Appcomponenet
-// header
-// -Logo
-// -Nav
-
-// body
-// -Search
-// -Restaurant container
-// ---RestaurantCard
-
-// footer
-// -CopyRigt
-// -Links
-// -Address
-// -Contact
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo">
-        <img
-          src="https://img.freepik.com/free-vector/food-shopping-logo-template-design_460848-10299.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1705449600&semt=ais"
-          alt=""
-        />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Cart</li>
-          <li>Contact us</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const StyleCard = { backgroundColor: "yellow" };
-
-const RestaurantCard = (props) => {
-  // console.log(props);
-  const { resName } = props;
-  const { name, locality, areaName, avgRating, cuisines } = resName?.info;
-  return (
-    // <div className="cover" style={StyleCard}>
-    <div className="cover" style={{ backgroundColor: "#f0f0f0" }}>
-      <img
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          resName.info.cloudinaryImageId
-        }
-        alt=""
-      />
-      <h3>{name}</h3>
-      <h4>{locality}</h4>
-      <h4>{areaName}</h4>
-      <h4>{avgRating}</h4>
-      <h4>{cuisines}</h4>
-    </div>
-  );
-};
+import RestaurantCard from "./RestaurantCard";
 
 const resList = [
   {
@@ -726,9 +664,6 @@ const resList = [
     },
   },
 ];
-
-// not using key is not acceptable<<<<<<<indexas a key(however , not recommnded)<<<<<<<<<<<<<< unique key is a best practise
-
 const Body = () => {
   return (
     <div className="body">
@@ -742,14 +677,4 @@ const Body = () => {
   );
 };
 
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+export default Body;
