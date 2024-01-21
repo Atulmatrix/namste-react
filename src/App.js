@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-
-// not using key is not acceptable<<<<<<<indexas a key(however , not recommnded)<<<<<<<<<<<<<< unique key is a best practise
 
 const AppLayout = () => {
   return (
