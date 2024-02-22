@@ -1,16 +1,27 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
+// import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 
 const Body = () => {
   //Local State Variable-Super Powerful Variable
-  const [listOfRestaurant, setListOfRestaurant] = useState(resList);
+  // const [listOfRestaurant, setListOfRestaurant] = useState(resList);
+  const [listOfRestaurant, setListOfRestaurant] = useState([]);
 
   useEffect(() => {
-    console.log("useEffect Called");
+    fetchdata();
   }, []);
 
-  console.log("Body Rendered");
+  const fetchdata = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5355161&lng=77.3910265&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    console.log(json);
+    setListOfRestaurant(
+      //optional chaining
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
 
   return (
     <div className="body">
