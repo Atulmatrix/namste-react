@@ -23,12 +23,14 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
-
-  if (listOfRestaurant.length == 0) {
-    // return <h1>Loading........</h1>;
-    return <Shimmer />;
-  }
-  return (
+  //conditional rendering
+  // if (listOfRestaurant.length == 0) {
+  //   // return <h1>Loading........</h1>;
+  //   return <Shimmer />;
+  // }
+  return listOfRestaurant.length == 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
         <button
