@@ -7,6 +7,7 @@ const Body = () => {
   //Local State Variable-Super Powerful Variable
   // const [listOfRestaurant, setListOfRestaurant] = useState(resList);
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
   console.log("Body Rendered");
   //whenever state variable update, react triggers reconciliation cycle(re-renders the component with updated value=>finding difference between older virtual DOM and newer virtual DOM and only update the changed value inside the DOM)
@@ -23,6 +24,9 @@ const Body = () => {
     console.log(json);
     setListOfRestaurant(
       //optional chaining
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurant(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
@@ -49,10 +53,10 @@ const Body = () => {
             onClick={() => {
               //filter the restaurant cards and update the UI
               console.log(searchText);
-              const filteredRestaurant = listOfRestaurant.filter((res) =>
+              const filteredRestaurant1 = listOfRestaurant.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setListOfRestaurant(filteredRestaurant);
+              setFilteredRestaurant(filteredRestaurant1);
             }}
           >
             Search
@@ -71,7 +75,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-Container">
-        {listOfRestaurant.map((res) => {
+        {filteredRestaurant.map((res) => {
           return <RestaurantCard key={res.info.id} resName={res} />;
         })}
       </div>
