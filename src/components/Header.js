@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 const Header = () => {
   const [btnNameReact, setbtnNameReact] = useState("Login");
   console.log("Header Render");
+
+  //if no dependency Array=>useEffect is called on every render
+  //if dependency Array is Empty=[]=>useEffect is called on intial render(just once)
+  //if dependency Array is [btnNameReact]=>called everytime on btnNameReact is updated
+  // Never Create useState outside the component
+  // Always try to use state variable at the top ..just to avoid inconsistencies.
+  //Never use state variable inside the conditions: if else, functions or loops
+  //state variable are meant to be created inside the function componenet at the higher level.
+  useEffect(() => {
+    console.log("useEffect Called");
+  }, [btnNameReact]);
   return (
     <div className="header">
       <div className="logo">

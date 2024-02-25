@@ -26,6 +26,10 @@ const Body = () => {
       //optional chaining
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
+    console.log(
+      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    );
     setFilteredRestaurant(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
