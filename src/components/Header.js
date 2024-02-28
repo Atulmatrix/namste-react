@@ -10,7 +10,7 @@ const Header = () => {
   // Never Create useState outside the component
   // Always try to use state variable at the top ..just to avoid inconsistencies.
   //Never use state variable inside the conditions: if else, functions or loops
-  //state variable are meant to be created inside the function componenet at the higher level.
+  //state variable are meant to be created inside the function component at the higher level.
   useEffect(() => {
     console.log("useEffect Called");
   }, [btnNameReact]);
