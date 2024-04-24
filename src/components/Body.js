@@ -73,7 +73,8 @@ const Body = () => {
             let filterData = listOfRestaurant.filter(
               (res) => res.info.avgRating > 4.5
             );
-            setListOfRestaurant(filterData);
+            // setListOfRestaurant(filterData);
+            setFilteredRestaurant(filterData);
             console.log(filterData);
           }}
         >
