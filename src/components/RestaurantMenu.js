@@ -19,17 +19,18 @@ const RestaurantMenu = () => {
     // const data = await fetch(MENU_API + "234763");
 
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     // console.log("Hello");
     setResmenu(json.data);
+    console.log(json.data);
   };
 
   if (resmenu == null) return <Shimmer />;
 
   const { name, cuisines, costForTwoMessage } =
-    resmenu?.cards[0]?.card?.card?.info;
+    resmenu?.cards[2]?.card?.card?.info;
   const { itemCards } =
-    resmenu.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
+    resmenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
   console.log(itemCards);
   return (
     <div className="menu">
