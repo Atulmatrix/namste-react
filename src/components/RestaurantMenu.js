@@ -1,29 +1,31 @@
-import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constant";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+
 const RestaurantMenu = () => {
-  const [resmenu, setResmenu] = useState(null);
+  // const [resmenu, setResmenu] = useState(null);
   // const params = useParams();
   // console.log(params);
   const { resID } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resID);
-    // const data = await fetch(
-    //   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.5355161&lng=77.3910265&restaurantId=234763"
-    // );
-    // const data = await fetch(MENU_API + "234763");
+  const resmenu = useRestaurantMenu(resID);
 
-    const json = await data.json();
-    // console.log(json);
-    // console.log("Hello");
-    setResmenu(json.data);
-    console.log(json.data);
-  };
+  // useEffect(() => {
+  //   fetchMenu();
+  // }, []);
+  // const fetchMenu = async () => {
+  //   const data = await fetch(MENU_API + resID);
+  //   // const data = await fetch(
+  //   //   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.5355161&lng=77.3910265&restaurantId=234763"
+  //   // );
+  //   // const data = await fetch(MENU_API + "234763");
+
+  //   const json = await data.json();
+  //   // console.log(json);
+  //   // console.log("Hello");
+  //   setResmenu(json.data);
+  //   console.log(json.data);
+  // };
 
   if (resmenu == null) return <Shimmer />;
 
