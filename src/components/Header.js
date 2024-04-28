@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [btnNameReact, setbtnNameReact] = useState("Login");
+  const onlineStatus = useOnlineStatus();
   console.log("Header Render");
 
   //if no dependency Array=>useEffect is called on every render.
@@ -25,6 +27,7 @@ const Header = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
+          <li>{onlineStatus ? "🟢" : "🔴"}</li>
           <li>
             <Link to="./About">About us</Link>
           </li>

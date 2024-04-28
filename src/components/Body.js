@@ -3,45 +3,58 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+
+import useBody from "../utils/useBody";
 
 const Body = () => {
   //Local State Variable-Super Powerful Variable
   // const [listOfRestaurant, setListOfRestaurant] = useState(resList);
-  const [listOfRestaurant, setListOfRestaurant] = useState([]);
-  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  // const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  // const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
   console.log("Body Rendered");
+
+  const {
+    listOfRestaurant,
+    filteredRestaurant,
+
+    setFilteredRestaurant,
+  } = useBody();
+
+  // setFilteredRestaurant(listOfRestaurant);
   //whenever state variable update, react triggers reconciliation cycle(re-renders the component with updated value=>finding difference between older virtual DOM and newer virtual DOM and only update the changed value inside the DOM)
 
-  useEffect(() => {
-    fetchdata();
-  }, []);
+  // useEffect(() => {
+  //   fetchdata();
+  // }, []);
 
-  const fetchdata = async () => {
-    const data = await fetch(
-      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5355161&lng=77.3910265&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  // const fetchdata = async () => {
+  //   const data = await fetch(RESTAURANT_List_API);
+  //   const json = await data.json();
+  //   console.log(json);
+  //   setListOfRestaurant(
+  //     //optional chaining
+  //     json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+  //   );
 
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.73057979999999&lng=77.7758825&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    console.log(json);
-    setListOfRestaurant(
-      //optional chaining
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-
-    console.log(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    );
-    setFilteredRestaurant(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  };
+  //   console.log(
+  //     json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+  //   );
+  //   setFilteredRestaurant(
+  //     json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+  //   );
+  // };
   //conditional rendering
   // if (listOfRestaurant.length == 0) {
   //   // return <h1>Loading........</h1>;
   //   return <Shimmer />;
   // }
+
+  const onlineStatus = useOnlineStatus();
+  if (!onlineStatus) {
+    return <h1>No Internet Connection</h1>;
+  }
   return listOfRestaurant.length == 0 ? (
     <Shimmer />
   ) : (
@@ -73,7 +86,7 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             let filterData = listOfRestaurant.filter(
-              (res) => res.info.avgRating > 4.5
+              (res) => res.info.avgRating > 4.3
             );
             // setListOfRestaurant(filterData);
             setFilteredRestaurant(filterData);
