@@ -13,5 +13,17 @@ const RestaurantCard = (props) => {
     </div>
   );
 };
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    const { resName } = props;
+    const { avgRating } = resName?.info;
+    return (
+      <>
+        <label>{avgRating}</label>
+        <RestaurantCard {...props} />
+      </>
+    );
+  };
+};
 
 export default RestaurantCard;

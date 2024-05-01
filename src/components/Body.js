@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 // import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -13,6 +13,8 @@ const Body = () => {
   // const [listOfRestaurant, setListOfRestaurant] = useState([]);
   // const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardpromoted = withPromotedLabel(RestaurantCard);
   console.log("Body Rendered");
 
   const {
@@ -21,6 +23,8 @@ const Body = () => {
 
     setFilteredRestaurant,
   } = useBody();
+
+  console.log(listOfRestaurant);
 
   // setFilteredRestaurant(listOfRestaurant);
   //whenever state variable update, react triggers reconciliation cycle(re-renders the component with updated value=>finding difference between older virtual DOM and newer virtual DOM and only update the changed value inside the DOM)
@@ -100,7 +104,11 @@ const Body = () => {
         {filteredRestaurant.map((res) => {
           return (
             <Link key={res.info.id} to={"/restaurants/" + res.info.id}>
-              <RestaurantCard resName={res} />
+              {res.info.avgRating > 3.5 ? (
+                <RestaurantCardpromoted resName={res} />
+              ) : (
+                <RestaurantCard resName={res} />
+              )}
             </Link>
           );
         })}
