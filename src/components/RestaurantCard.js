@@ -13,9 +13,12 @@ const RestaurantCard = (props) => {
     </div>
   );
 };
+
+// Higher Order Component
 export const withPromotedLabel = (RestaurantCard) => {
   return (props) => {
     const { resName } = props;
+    console.log(resName);
     const { avgRating } = resName?.info;
     return (
       <>

@@ -10,7 +10,7 @@ const useBody = () => {
     fetchdata();
   }, []);
   const fetchdata = async () => {
-    const data = await fetch(RESTAURANT_List_API);
+    const data = await fetch(Restaurant_list_Noida);
     const json = await data.json();
     setListOfRestaurant(
       //optional chaining
