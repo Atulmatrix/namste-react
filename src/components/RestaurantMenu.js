@@ -10,6 +10,7 @@ const RestaurantMenu = () => {
   const { resID } = useParams();
 
   const resmenu = useRestaurantMenu(resID);
+  console.log(resmenu);
 
   // useEffect(() => {
   //   fetchMenu();
@@ -35,7 +36,9 @@ const RestaurantMenu = () => {
 
   const { itemCards } =
     resmenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  console.log(itemCards);
   console.log(resmenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
   const categories =
     resmenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
@@ -64,7 +67,7 @@ const RestaurantMenu = () => {
       </ul> */}
 
       {categories.map((category) => {
-        return <RestaurantCategory data={category?.card?.card?.itemCards} />;
+        return <RestaurantCategory data={category?.card?.card} />;
       })}
     </div>
   );
